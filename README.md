@@ -7,7 +7,7 @@ Useful tools to test Apache Kafka in Kubernetes and Knatvie Eventing
 Basic connectivity - ping Kafka broker port using telnet
 
 ```
-$ docker run -it telnet /usr/bin/telnet kafka01-prod02.messagehub.services.us-south.bluemix.net 9093
+$ docker run -it aslom/telnet /usr/bin/telnet kafka01-prod02.messagehub.services.us-south.bluemix.net 9093
 Trying 169.60.0.116...
 Connected to kafka01-prod02.messagehub.services.us-south.bluemix.net.
 Escape character is '^]'.
@@ -44,8 +44,18 @@ command terminated with exit code 1
 
 ## Kafka consumer and producer tests
 
+
+Run local test
+
+
+```
+$ docker run -it aslom/kafka-cli  /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server 9.59.194.50:9092 --topic test --from-beginning
+test83
+^CProcessed a total of 1 messages
+```
+
 Run Kafka consumer and producer using kubectl exec
 
-
-
+```
 k apply -f kafka-cli-knative-eventing.yml
+```
