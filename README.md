@@ -120,7 +120,7 @@ kubectl exec -n default -ti kafka-cli -- /bin/bash
 Create config file with properties for example:
 
 ```
-$ cat oimessage-kafka-config.properties
+$ cat my-kafka-config.properties
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="T7f3xuwnKG0Q5V71" password="Xwup9VRp9...";
 security.protocol=SASL_SSL
 sasl.mechanism=PLAIN
@@ -144,6 +144,9 @@ k apply -f kafka-cli/kafka-cli-default-with-secret.yml
 k describe pod kafka-cli
 
 k exec -it kafka-cli -- /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server kafka01-prod02.messagehub.services.us-south.bluemix.net:9093  --consumer.config /opt/config/my-kafka-config.properties --topic my-topic --from-beginning
+
+
+k exec -it kafka-cli -- /opt/kafka/bin/kafka-console-producer.sh --broker-list kafka01-prod02.messagehub.services.us-south.bluemix.net:9093 --producer.config /opt/config/my-kafka-config.properties --topic my-topic
 ```
 
 Example:
